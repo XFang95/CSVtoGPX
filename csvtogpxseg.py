@@ -53,7 +53,7 @@ def convert_csv_to_gpx(csv_file_path, output_gpx_path):
             distance_next = None
 
         # Determine whether to create a dedicated segment or link points
-        if (time_diff_prev is not None and time_diff_prev <= 60 and distance_prev <= 1):
+        if (time_diff_prev is not None and time_diff_prev <= 60 and distance_prev <= 3):
             # Link to previous point if criteria are met
             trkseg = SubElement(trk, 'trkseg')
             trkpt_start = SubElement(trkseg, 'trkpt', lat=f"{previous_row['latitude']:.6f}",
@@ -61,7 +61,7 @@ def convert_csv_to_gpx(csv_file_path, output_gpx_path):
             trkpt_end = SubElement(trkseg, 'trkpt', lat=f"{current_row['latitude']:.6f}",
                                    lon=f"{current_row['longitude']:.6f}")
 
-        if (time_diff_next is not None and time_diff_next <= 60 and distance_next <= 1):
+        if (time_diff_next is not None and time_diff_next <= 60 and distance_next <= 3):
             # Link to next point if criteria are met
             trkseg = SubElement(trk, 'trkseg')
             trkpt_start = SubElement(trkseg, 'trkpt', lat=f"{current_row['latitude']:.6f}",
@@ -69,8 +69,8 @@ def convert_csv_to_gpx(csv_file_path, output_gpx_path):
             trkpt_end = SubElement(trkseg, 'trkpt', lat=f"{next_row['latitude']:.6f}",
                                    lon=f"{next_row['longitude']:.6f}")
 
-        if ((time_diff_prev is None or time_diff_prev > 60 or distance_prev > 1) and
-                (time_diff_next is None or time_diff_next > 60 or distance_next > 1)):
+        if ((time_diff_prev is None or time_diff_prev > 60 or distance_prev > 3) and
+                (time_diff_next is None or time_diff_next > 60 or distance_next > 3)):
             # Create a dedicated segment for the current point
             trkseg = SubElement(trk, 'trkseg')
             trkpt = SubElement(trkseg, 'trkpt', lat=f"{current_row['latitude']:.6f}",
