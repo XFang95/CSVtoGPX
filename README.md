@@ -5,3 +5,7 @@ To get the CSV files, go to files -> 一生足迹 -> backup, and copy the backUp
 The csvtogpx.py script will convert the individual points as separate "segments" and will show as dots in Fog of World.
 
 The csvtogpxseg.py script will connect the adjacent dots based on time series based on time (within 60s with adjacent dots) and space (within 1.0 km with adjacent dots). The criteria can be adjusted based on your setting in the Footprint app.
+
+
+This code is built by ChatGPT and the full conversation can be found in the following link
+https://chatgpt.com/share/9327f9d6-103c-4bde-bd1b-63bf77553052 
